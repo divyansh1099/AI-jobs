@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form - Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .header { text-align: center; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Senior Software Engineer</h1>
+        <p><strong>Company:</strong> Tech Innovations Inc.</p>
+        <p><strong>Location:</strong> San Francisco, CA</p>
+    </div>
+
+    <form id="jobApplicationForm" class="application-form">
+        <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="first_name" placeholder="Enter your first name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="last_name" placeholder="Enter your last name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="user_email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone_number" placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Years of Experience</label>
+            <select id="experience" name="years_experience">
+                <option value="">Select experience level</option>
+                <option value="0-1">0-1 years</option>
+                <option value="1-3">1-3 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="5-7">5-7 years</option>
+                <option value="7+">7+ years</option>
+                <option value="senior">Senior (10+ years)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="workAuth">Work Authorization</label>
+            <select id="workAuth" name="work_authorization">
+                <option value="">Please select</option>
+                <option value="yes">Yes, I am authorized to work</option>
+                <option value="no">No, I require sponsorship</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="relocate">Willing to Relocate?</label>
+            <select id="relocate" name="willing_relocate">
+                <option value="">Please select</option>
+                <option value="yes">Yes, willing to relocate</option>
+                <option value="no">No, prefer current location</option>
+                <option value="maybe">Open to discussion</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Upload Resume</label>
+            <input type="file" id="resume" name="resume_file" accept=".pdf,.doc,.docx">
+        </div>
+
+        <div class="form-group">
+            <label for="coverLetter">Cover Letter</label>
+            <textarea id="coverLetter" name="cover_letter" rows="5" placeholder="Tell us why you're interested in this position..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+            <label for="newsletter" style="display: inline; margin-left: 8px;">Subscribe to job alerts</label>
+        </div>
+
+        <button type="submit">Submit Application</button>
+    </form>
+
+    <script>
+        // Simple form submission handler for testing
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submission blocked for testing. Check the AI Form Filler extension!');
+        });
+
+        // Add some console logging to help with debugging
+        console.log('Test job application form loaded');
+        console.log('Form elements count:', document.querySelectorAll('input, select, textarea').length);
+    </script>
+</body>
+</html>

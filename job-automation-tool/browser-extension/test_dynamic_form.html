@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Job Application - Dynamic Form Filling</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        textarea { height: 100px; resize: vertical; }
+        .company-info { background: #f5f5f5; padding: 15px; margin-bottom: 30px; border-radius: 5px; }
+        .job-description { background: #e8f4f8; padding: 15px; margin-bottom: 30px; border-radius: 5px; }
+        button { background: #007cba; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #005c87; }
+    </style>
+</head>
+<body>
+    <div class="company-info">
+        <h2>TechCorp Solutions</h2>
+        <p>Leading technology consulting firm specializing in AI and machine learning solutions for enterprise clients.</p>
+        <p><strong>Location:</strong> San Francisco, CA | <strong>Size:</strong> 500+ employees</p>
+    </div>
+
+    <div class="job-description">
+        <h3>Senior Data Scientist Position</h3>
+        <p><strong>Role Summary:</strong> We are seeking an experienced Data Scientist to join our AI research team. The ideal candidate will have expertise in machine learning, deep learning, and statistical analysis to help our clients solve complex business problems using data-driven approaches.</p>
+        
+        <p><strong>Key Responsibilities:</strong></p>
+        <ul>
+            <li>Develop and implement machine learning models for predictive analytics</li>
+            <li>Collaborate with cross-functional teams to identify data science opportunities</li>
+            <li>Design and conduct A/B tests to measure impact of ML solutions</li>
+            <li>Present findings and recommendations to executive stakeholders</li>
+        </ul>
+        
+        <p><strong>Requirements:</strong> 3+ years experience in data science, strong Python/R skills, experience with cloud platforms (AWS/Azure), excellent communication skills.</p>
+    </div>
+
+    <form id="jobApplicationForm">
+        <h3>Job Application Form</h3>
+        
+        <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        
+        <div class="form-group">
+            <label for="experience">Tell us about your relevant experience with machine learning and data science (minimum 150 words) *</label>
+            <textarea id="experience" name="experience" placeholder="Describe your hands-on experience with ML algorithms, data analysis projects, and any relevant achievements..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="motivation">Why are you interested in joining TechCorp Solutions specifically? How do you see yourself contributing to our AI research team? *</label>
+            <textarea id="motivation" name="motivation" placeholder="Share your specific interest in our company and role..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="challenge">Describe a challenging data science project you've worked on. What was the problem, your approach, and the impact of your solution? *</label>
+            <textarea id="challenge" name="challenge" placeholder="Walk us through a specific project that demonstrates your problem-solving skills..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="tools">What data science tools and technologies are you most proficient with? How do you stay current with advances in ML/AI? *</label>
+            <textarea id="tools" name="tools" placeholder="List your technical skills and how you continue learning..." required></textarea>
+        </div>
+        
+        <button type="submit">Submit Application</button>
+    </form>
+
+    <script>
+        // Simulate form submission
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! Check the console for filled values.');
+            
+            // Log all form values
+            const formData = new FormData(this);
+            console.log('Form submission data:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+        });
+    </script>
+</body>
+</html>

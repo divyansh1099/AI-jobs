@@ -1,0 +1,31 @@
+ALICE JOHNSON
+Product Manager
+alice.johnson@gmail.com | (415) 555-0123
+San Francisco, CA
+LinkedIn: https://linkedin.com/in/alicejohnson
+
+PROFESSIONAL SUMMARY
+Strategic product manager with 6+ years of experience driving product vision and roadmap for B2B SaaS applications. Proven track record of launching products that increased revenue by 40%.
+
+EXPERIENCE
+Senior Product Manager | TechStart | 2021 - Present
+- Led product development for enterprise SaaS platform serving 10k+ users
+- Collaborated with engineering, design, and sales teams to deliver features
+- Increased user engagement by 35% through data-driven product improvements
+
+Product Manager | InnovaCorp | 2019 - 2021  
+- Managed product lifecycle from conception to launch for mobile applications
+- Conducted user research and competitive analysis to inform product decisions
+- Successfully launched 3 major product features on time and under budget
+
+EDUCATION
+MBA in Business Administration
+UC Berkeley Haas School of Business | 2019
+
+Bachelor of Science in Computer Science  
+Stanford University | 2017
+
+SKILLS
+Product Management: Roadmap planning, User research, A/B testing, Analytics
+Technical: SQL, Python, Tableau, Figma, Jira, Confluence
+Business: Strategic planning, Stakeholder management, Go-to-market strategy

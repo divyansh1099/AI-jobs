@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Form Filler</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Form Filler</h1>
+            <div class="status" id="status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Checking connection...</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Form Detection Status -->
+            <div class="section" id="formSection">
+                <h3>📋 Form Detection</h3>
+                <div id="formStatus" class="info-box">
+                    <span id="formStatusText">Scanning page...</span>
+                </div>
+            </div>
+
+            <!-- Resume Selection -->
+            <div class="section" id="resumeSection">
+                <h3>📄 Select Resume</h3>
+                <div class="resume-selector">
+                    <select id="resumeSelect" class="resume-select">
+                        <option value="">Loading resumes...</option>
+                    </select>
+                    <button id="uploadResume" class="secondary-btn">Upload Resume</button>
+                </div>
+                <div id="activeResumeInfo" class="info-box" style="display: none;">
+                    <span id="activeResumeName"></span>
+                    <button id="manageResumes" class="text-btn">Manage</button>
+                </div>
+            </div>
+
+            <!-- File Upload Modal (hidden by default) -->
+            <div id="uploadModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>📄 Upload Resume</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <p>Drop PDF file here or click to select</p>
+                        <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                    </div>
+                    <div class="modal-actions">
+                        <button id="cancelUpload" class="secondary-btn">Cancel</button>
+                        <button id="confirmUpload" class="primary-btn" disabled>Upload</button>
+                    </div>
+                    <div id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p id="uploadStatus">Processing...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fill Options -->
+            <div class="section" id="fillSection">
+                <h3>⚡ Auto Fill Options</h3>
+                <div class="options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="fillBasicInfo" checked>
+                        <span>Basic Information</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="fillExperience" checked>
+                        <span>Work Experience</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="fillEducation" checked>
+                        <span>Education</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="fillCoverLetter" checked>
+                        <span>Cover Letter</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+                <button id="oneClickApply" class="primary-btn" disabled>
+                    ⚡ One-Click Apply
+                </button>
+                <button id="fillForm" class="secondary-btn" disabled>
+                    🚀 Fill Form Only
+                </button>
+                <button id="analyzeForm" class="secondary-btn">
+                    🔍 Analyze Form
+                </button>
+            </div>
+
+            <!-- Learning Section -->
+            <div class="section" id="learningSection">
+                <h3>🧠 Learning Status</h3>
+                <div class="learning-stats">
+                    <div class="stat">
+                        <span class="stat-label">Forms Filled:</span>
+                        <span id="formsFilledCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Accuracy:</span>
+                        <span id="accuracyRate">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button id="openSettings" class="text-btn">Settings</button>
+            <span class="version">v1.0.0</span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+JOHN SMITH
+Data Scientist
+john.smith@email.com | (555) 123-4567
+San Francisco, CA
+
+EXPERIENCE
+Senior Data Scientist | DataCorp | 2021 - Present
+- Led machine learning projects using Python, TensorFlow, and PyTorch
+- Developed predictive models that increased revenue by 25%
+- Managed a team of 3 data analysts
+
+Data Analyst | Analytics Inc | 2019 - 2021
+- Built data pipelines using SQL and Python
+- Created dashboards with Tableau and Power BI
+
+EDUCATION
+Master of Science in Data Science
+Stanford University | 2019
+
+SKILLS
+Programming: Python, R, SQL, Java
+ML/AI: TensorFlow, PyTorch, scikit-learn, Keras
+Tools: Tableau, Power BI, Jupyter, Git

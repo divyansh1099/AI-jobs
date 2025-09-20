@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Greenhouse Job Application</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        textarea { height: 100px; resize: vertical; }
+        .company-info { background: #f0f8ff; padding: 15px; margin-bottom: 30px; border-radius: 5px; }
+        button { background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+        button:hover { background: #218838; }
+        .error-button { background: #dc3545; }
+        .error-button:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <div class="company-info">
+        <h2>TechFlow Solutions</h2>
+        <p><strong>Position:</strong> Senior Full-Stack Developer</p>
+        <p><strong>Location:</strong> Remote / San Francisco, CA</p>
+        <p>Join our innovative team building next-generation web applications with cutting-edge technologies.</p>
+    </div>
+
+    <form id="jobApplicationForm" data-automation-id="job-application-form">
+        <h3>Job Application Form</h3>
+        
+        <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        
+        <div class="form-group">
+            <label for="experience">Tell us about your experience with full-stack development and why you're interested in this role *</label>
+            <textarea id="experience" name="experience" placeholder="Share your experience with both frontend and backend technologies, specific projects you've worked on, and what excites you about this opportunity..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="motivation">What interests you most about working at TechFlow Solutions? *</label>
+            <textarea id="motivation" name="motivation" placeholder="Tell us what you know about our company and why you'd like to be part of our team..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="challenge">Describe a challenging technical problem you solved and your approach to solving it *</label>
+            <textarea id="challenge" name="challenge" placeholder="Walk us through a specific technical challenge, your problem-solving process, and the outcome..." required></textarea>
+        </div>
+        
+        <button type="submit">Submit Application</button>
+        <button type="button" class="error-button" onclick="simulateContextError()">Test Context Error</button>
+        <button type="button" onclick="testExtension()">Test AI Form Filler</button>
+    </form>
+
+    <script>
+        // Simulate the environment where context invalidation might occur
+        function simulateContextError() {
+            console.log('🧪 Simulating extension context invalidation...');
+            
+            // Create a fake chrome.runtime error
+            const fakeError = new Error('Extension context invalidated. Content scripts cannot be run.');
+            fakeError.name = 'ExtensionContextError';
+            
+            // Dispatch the error to trigger our global error handler
+            window.dispatchEvent(new ErrorEvent('error', {
+                error: fakeError,
+                message: fakeError.message
+            }));
+        }
+
+        function testExtension() {
+            if (window.formDetector) {
+                console.log('✅ AI Form Filler detected:', window.formDetector);
+                try {
+                    window.formDetector.detectJobForms();
+                    console.log('✅ Form detection completed');
+                } catch (error) {
+                    console.error('❌ Form detection failed:', error);
+                }
+            } else {
+                console.log('❌ AI Form Filler not detected. Make sure the extension is loaded.');
+            }
+        }
+
+        // Simulate form submission
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('📋 Form submitted');
+            
+            // Log all form values
+            const formData = new FormData(this);
+            console.log('Form data:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            
+            alert('Form submitted successfully! Check the console for details.');
+        });
+
+        // Load test data after a delay to simulate dynamic content loading
+        setTimeout(() => {
+            console.log('🔄 Simulating dynamic content load (like Greenhouse does)');
+            
+            // Add some dynamic content
+            const dynamicInfo = document.createElement('div');
+            dynamicInfo.innerHTML = '<p><em>Position filled via Greenhouse ATS</em></p>';
+            document.querySelector('.company-info').appendChild(dynamicInfo);
+            
+            // Trigger form detection if extension is present
+            if (window.formDetector) {
+                window.formDetector.detectJobForms();
+            }
+        }, 2000);
+
+        console.log('🌐 Test page loaded. URL:', window.location.href);
+        console.log('📄 Page title:', document.title);
+    </script>
+</body>
+</html>

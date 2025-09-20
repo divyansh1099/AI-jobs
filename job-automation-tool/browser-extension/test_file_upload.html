@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test File Upload - PDF Attachment Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #007cba; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+        button:hover { background: #005c87; }
+        .debug-info { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .error { color: #dc3545; }
+        .success { color: #28a745; }
+    </style>
+</head>
+<body>
+    <h2>🧪 PDF Attachment Debug Test</h2>
+    <p>This page is designed to test the PDF attachment functionality and debug resumeId issues.</p>
+
+    <form id="testForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email">
+        </div>
+        
+        <div class="form-group">
+            <label for="resume">Resume Upload (PDF)</label>
+            <input type="file" id="resume" name="resume" accept=".pdf">
+        </div>
+        
+        <div class="form-group">
+            <label for="coverLetter">Cover Letter (Text)</label>
+            <textarea id="coverLetter" name="coverLetter" placeholder="Write your cover letter here..."></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="coverLetterFile">Cover Letter Upload (Optional)</label>
+            <input type="file" id="coverLetterFile" name="coverLetterFile" accept=".pdf,.doc,.docx">
+        </div>
+        
+        <button type="button" onclick="debugFormDetection()">🔍 Debug Form Detection</button>
+        <button type="button" onclick="testFileUpload()">📁 Test File Upload</button>
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <div class="debug-info">
+        <h3>📊 Debug Information</h3>
+        <div id="debugOutput">
+            <p><em>Click "Debug Form Detection" to see form analysis...</em></p>
+        </div>
+    </div>
+
+    <script>
+        function debugFormDetection() {
+            const output = document.getElementById('debugOutput');
+            output.innerHTML = '<p>🔍 Analyzing form...</p>';
+            
+            try {
+                // Test if extension is available
+                if (!window.formDetector) {
+                    output.innerHTML += '<p class="error">❌ AI Form Filler extension not detected</p>';
+                    return;
+                }
+                
+                // Run form detection
+                window.formDetector.detectJobForms();
+                
+                // Get form fields info
+                const formFieldsInfo = window.formDetector.extractFormFieldsInfo();
+                
+                output.innerHTML = '<h4>✅ Form Detection Results:</h4>';
+                output.innerHTML += `<p><strong>Forms detected:</strong> ${window.formDetector.forms.length}</p>`;
+                output.innerHTML += `<p><strong>Fields extracted:</strong> ${formFieldsInfo.length}</p>`;
+                
+                output.innerHTML += '<h4>📋 Field Details:</h4>';
+                formFieldsInfo.forEach((field, index) => {
+                    output.innerHTML += `
+                        <div style="border: 1px solid #ddd; padding: 10px; margin: 5px 0;">
+                            <strong>Field ${index + 1}:</strong><br>
+                            Name: ${field.name || 'N/A'}<br>
+                            Type: ${field.type || 'N/A'}<br>
+                            Label: ${field.label || 'N/A'}<br>
+                            Classes: ${field.classes || 'N/A'}<br>
+                        </div>
+                    `;
+                });
+                
+            } catch (error) {
+                output.innerHTML += `<p class="error">❌ Error: ${error.message}</p>`;
+                console.error('Debug error:', error);
+            }
+        }
+        
+        function testFileUpload() {
+            const output = document.getElementById('debugOutput');
+            output.innerHTML += '<h4>🧪 Testing File Upload Logic:</h4>';
+            
+            try {
+                // Simulate the extension's fillFileField call with a proper UUID
+                const testResumeId = 'ec7bf759-a2cd-4ca0-a871-d055b7da2362';
+                const fileInput = document.getElementById('resume');
+                
+                output.innerHTML += `<p>📋 Testing with resumeId: <code>${testResumeId}</code></p>`;
+                output.innerHTML += `<p>📄 File input element: ${fileInput.tagName} (type: ${fileInput.type})</p>`;
+                
+                // Check if extension is available
+                if (window.formDetector && typeof window.formDetector.fillFileField === 'function') {
+                    output.innerHTML += '<p>🔧 Calling fillFileField...</p>';
+                    
+                    // Call the method (this will make API requests and show logs)
+                    window.formDetector.fillFileField(fileInput, testResumeId)
+                        .then(() => {
+                            output.innerHTML += '<p class="success">✅ fillFileField completed (check console for details)</p>';
+                        })
+                        .catch(error => {
+                            output.innerHTML += `<p class="error">❌ fillFileField failed: ${error.message}</p>';
+                        });
+                } else {
+                    output.innerHTML += '<p class="error">❌ fillFileField method not available</p>';
+                }
+                
+            } catch (error) {
+                output.innerHTML += `<p class="error">❌ Test failed: ${error.message}</p>';
+                console.error('Test error:', error);
+            }
+        }
+        
+        // Form submission handler
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('📋 Form submitted');
+            
+            const formData = new FormData(this);
+            console.log('Form data:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            
+            alert('Form submitted! Check console for details.');
+        });
+        
+        console.log('🧪 Test page loaded');
+        console.log('📄 Available forms:', document.forms.length);
+        console.log('🔗 Extension available:', !!window.formDetector);
+    </script>
+</body>
+</html>
