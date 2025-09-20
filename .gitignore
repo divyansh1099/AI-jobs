@@ -94,3 +94,7 @@ MANIFEST
 
 # Claude Code
 .claude/
+
+# Session Reports and Documentation
+Documentation/SESSION_REPORT_*.md
+Documentation/*session*.md
